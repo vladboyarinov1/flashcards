@@ -43,6 +43,7 @@
     "storybook": "^7.5.2",
     "stylelint": "^15.11.0",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-react-svg": "^0.2.0"
   }
 }
