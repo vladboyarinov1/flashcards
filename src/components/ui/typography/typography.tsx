@@ -12,6 +12,7 @@ import { JSX } from 'react/jsx-runtime'
 
 import s from './typography.module.scss'
 
+//содержит информацию о типе атрибутов и свойств
 type IntrinsicElements = JSX.IntrinsicElements
 
 //определяет доступные атрибуты (пропсы) для этого тега
