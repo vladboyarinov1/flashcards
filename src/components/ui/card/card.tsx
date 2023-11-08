@@ -1,6 +1,6 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
-type CardType = {
+type CardProps = {
   background?: CSSProperties['backgroundColor']
   children: ReactNode
   className?: string
@@ -14,7 +14,7 @@ type CardType = {
   width: CSSProperties['width']
 }
 
-export const Card = (props: CardType & Omit<ComponentPropsWithoutRef<'div'>, keyof CardType>) => {
+export const Card = (props: CardProps & Omit<ComponentPropsWithoutRef<'div'>, keyof CardProps>) => {
   const { background, children, className, height, pb, pl, pr, pt, px, py, style, width } = props
 
   const styles = {
