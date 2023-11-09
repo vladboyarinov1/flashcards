@@ -55,7 +55,7 @@ label {
   cursor: pointer;
 
   position: absolute;
-  top: 8px;
+  top: 6px;
   right: 12px;
 
   width: 20px;
@@ -68,9 +68,13 @@ label {
 
 .searchImg {
   position: absolute;
-  top: 8px;
+  top: 6px;
   left: 12px;
 
   width: 20px;
   height: 20px;
+}
+
+.searchClass {
+  padding-left: 40px;
 }

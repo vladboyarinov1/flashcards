@@ -1,8 +1,7 @@
 import { ComponentPropsWithoutRef, useState } from 'react'
 
-import ShowPassword from '@/common/icons/eye.svg'
-import ClosePassword from '@/common/icons/eye-off.svg'
-import Search from '@/common/icons/search.svg'
+import { Eye, EyeOff, Search } from '@/common/icons'
+import { clsx } from 'clsx'
 import { Field, Form, Formik } from 'formik'
 
 import s from './textField.module.scss'
@@ -25,47 +24,41 @@ export const TextField = (
   }
 
   return (
-    <div>
-      <Formik
-        initialValues={{
-          [variant]: initialValue ?? '',
-        }}
-        onSubmit={values => {
-          // same shape as initial values
-        }}
-        validationSchema={validate}
-      >
-        {({ errors }) => (
-          <Form className={s.wrapper}>
-            <label>{label}</label>
-            <div className={s.inputWrapper}>
-              <Field
-                className={`${s[variant]} ${errors[variant] && s.error}`}
-                name={variant}
-                type={showPassword ? 'text' : variant}
-                {...rest}
-              />
-              {variant === 'password' && (
-                <img
-                  alt={''}
-                  className={s.toggleEye}
-                  onClick={togglePasswordHandler}
-                  src={showPassword ? `${ClosePassword}` : `${ShowPassword}`}
-                />
+    <Formik
+      initialValues={{
+        [variant]: initialValue ?? '',
+      }}
+      onSubmit={values => {
+        // same shape as initial values
+      }}
+      validationSchema={validate}
+    >
+      {({ errors }) => (
+        <Form className={s.wrapper}>
+          <label>{label}</label>
+          <div className={s.inputWrapper}>
+            <Field
+              className={clsx(
+                s[variant],
+                { [s.error]: errors[variant] },
+                { [s.searchClass]: variant === 'search' }
               )}
-              {variant === 'search' && (
-                <img
-                  alt={''}
-                  className={s.searchImg}
-                  onClick={togglePasswordHandler}
-                  src={Search}
-                />
-              )}
-              {errors[variant] ? <div className={s.errorText}>{errors[variant]}</div> : null}
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+              name={variant}
+              type={showPassword ? 'text' : variant}
+              {...rest}
+            />
+            {variant === 'password' &&
+              (showPassword ? (
+                <EyeOff className={s.toggleEye} onClick={togglePasswordHandler} />
+              ) : (
+                <Eye className={s.toggleEye} onClick={togglePasswordHandler} />
+              ))}
+
+            {variant === 'search' && <Search className={s.searchImg} color={'red'} />}
+            {errors[variant] ? <div className={s.errorText}>{errors[variant]}</div> : null}
+          </div>
+        </Form>
+      )}
+    </Formik>
   )
 }
